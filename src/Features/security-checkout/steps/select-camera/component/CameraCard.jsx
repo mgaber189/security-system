@@ -13,13 +13,12 @@ function CameraCard({
   price, 
   originalPrice 
 }) {
-  console.log(image)
   return (
     <div className="bg-white rounded-lg border border-purple-200 p-4 w-64 hover:shadow-lg transition-shadow">
       {/* Discount Badge */}
       {discount && (
         <div className="inline-block bg-purple-600 text-white text-xs font-semibold px-2 py-1 rounded-md mb-3">
-           {discount}
+           Save {discount}%
         </div>
       )}
 
@@ -84,11 +83,11 @@ function CameraCard({
         <div className="flex items-center gap-2">
           {originalPrice && (
             <span className="text-sm text-gray-500 line-through">
-              ${originalPrice}
+              ${originalPrice.toFixed(2)}
             </span>
           )}
           <span className="text-lg font-semibold text-red-600">
-            ${price}
+            ${price.toFixed(2)}
           </span>
         </div>
       </div>

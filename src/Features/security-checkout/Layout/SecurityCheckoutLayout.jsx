@@ -1,6 +1,7 @@
 import React from "react";
 import Accordion from "@/Features/security-checkout/component/Accordion";
 import SelectCameraLayout from "@/Features/security-checkout/steps/select-camera/Layout";
+import SelectPlanLayout from "@/Features/security-checkout/steps/select-plan/Layout";
 
 function SecurityCheckoutLayout() {
   const accordionItems = [
@@ -18,7 +19,7 @@ function SecurityCheckoutLayout() {
       title: "Choose your plan",
       content: (
         <div className="text-gray-600">
-          <p>Plan selection content goes here...</p>
+          <SelectPlanLayout />
         </div>
       )
     },
