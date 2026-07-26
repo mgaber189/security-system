@@ -59,11 +59,29 @@ function AccordionItem({
   );
 }
 
-function Accordion({ items, className, defaultOpenIndex = null }) {
+function Accordion({ items, className, defaultOpenIndex = null, onNextStep }) {
   const [openIndex, setOpenIndex] = useState(defaultOpenIndex);
 
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleNextStep = (index) => {
+    const nextIndex = index + 1;
+    if (nextIndex < items.length) {
+      setOpenIndex(nextIndex);
+      if (onNextStep) {
+        onNextStep(nextIndex);
+      }
+    }
+  };
+
+  const getNextStepLabel = (index) => {
+    const nextIndex = index + 1;
+    if (nextIndex < items.length && items[nextIndex]) {
+      return items[nextIndex].title;
+    }
+    return "Next Step";
   };
 
   return (
@@ -77,6 +95,16 @@ function Accordion({ items, className, defaultOpenIndex = null }) {
           onClick={() => handleToggle(index)}
         >
           {item.content}
+          {openIndex === index && index < items.length - 1 && (
+            <div className="mt-6 w-fit m-auto">
+              <button
+                onClick={() => handleNextStep(index)}
+                className="w-full border border-primary text-primary bg-transparent h-10 px-4 py-2 rounded-md text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                {getNextStepLabel(index)}
+              </button>
+            </div>
+          )}
         </AccordionItem>
       ))}
     </div>
