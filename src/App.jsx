@@ -1,8 +1,11 @@
-
+import SecurityCheckoutLayout from "./Features/security-checkout/Layout/SecurityCheckoutLayout";
 
 function App() {
-
-  return <></>;
+  return (
+    <>
+      <SecurityCheckoutLayout />
+    </>
+  );
 }
 
 export default App;
