@@ -2,6 +2,7 @@ import React from "react";
 import Accordion from "@/Features/security-checkout/component/Accordion";
 import SelectCameraLayout from "@/Features/security-checkout/steps/select-camera/Layout";
 import SelectPlanLayout from "@/Features/security-checkout/steps/select-plan/Layout";
+import SelectSensorsLayout from "@/Features/security-checkout/steps/select-sensors/Layout";
 
 function SecurityCheckoutLayout() {
   const accordionItems = [
@@ -27,9 +28,7 @@ function SecurityCheckoutLayout() {
       step: "STEP 3 OF 4",
       title: "Choose your sensors",
       content: (
-        <div className="text-gray-600">
-          <p>Sensor selection content goes here...</p>
-        </div>
+        <SelectSensorsLayout />
       )
     },
     {
