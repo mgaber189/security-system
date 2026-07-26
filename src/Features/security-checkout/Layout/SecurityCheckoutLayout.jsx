@@ -4,6 +4,7 @@ import SelectCameraLayout from "@/Features/security-checkout/steps/select-camera
 import SelectPlanLayout from "@/Features/security-checkout/steps/select-plan/Layout";
 import SelectSensorsLayout from "@/Features/security-checkout/steps/select-sensors/Layout";
 import SelectExtraProtectionLayout from "@/Features/security-checkout/steps/select-extra-protection/Layout";
+import CheckoutLayout from "@/Features/security-checkout/steps/checkout/Layout";
 
 function SecurityCheckoutLayout() {
   const accordionItems = [
@@ -47,6 +48,9 @@ function SecurityCheckoutLayout() {
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <Accordion items={accordionItems} defaultOpenIndex={0} />
+        <div className="mt-8">
+          <CheckoutLayout />
+        </div>
       </div>
     </div>
   );
