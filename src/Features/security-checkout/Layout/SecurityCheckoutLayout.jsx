@@ -3,6 +3,7 @@ import Accordion from "@/Features/security-checkout/component/Accordion";
 import SelectCameraLayout from "@/Features/security-checkout/steps/select-camera/Layout";
 import SelectPlanLayout from "@/Features/security-checkout/steps/select-plan/Layout";
 import SelectSensorsLayout from "@/Features/security-checkout/steps/select-sensors/Layout";
+import SelectExtraProtectionLayout from "@/Features/security-checkout/steps/select-extra-protection/Layout";
 
 function SecurityCheckoutLayout() {
   const accordionItems = [
@@ -36,7 +37,7 @@ function SecurityCheckoutLayout() {
       title: "Add extra protection",
       content: (
         <div className="text-gray-600">
-          <p>Extra protection options go here...</p>
+          <SelectExtraProtectionLayout />
         </div>
       )
     }
