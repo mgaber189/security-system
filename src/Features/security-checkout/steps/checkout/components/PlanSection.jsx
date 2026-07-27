@@ -6,26 +6,27 @@ function PlanSection() {
 
   if (!selectedPlan) {
     return (
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 sm:p-4">
         <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-3">Plan</h3>
-        <p className="text-gray-500">No plan selected</p>
+        <p className="text-gray-500 text-sm sm:text-base">No plan selected</p>
       </div>
     )
   }
 
-  const originalPrice = selectedPlan.price / (1 - selectedPlan.discount / 100)
+  const discount = selectedPlan.discount || 0
+  const originalPrice = discount > 0 ? selectedPlan.price / (1 - discount / 100) : selectedPlan.price
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4">
+    <div className="bg-white rounded-lg border border-gray-200 p-3 sm:p-4">
       <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-3">Plan</h3>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-purple-600 font-semibold">Cam</span>
-          <span className="font-semibold text-gray-900">{selectedPlan.planName.replace('Cam ', '')}</span>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="text-purple-600 font-semibold text-sm sm:text-base">Cam</span>
+          <span className="font-semibold text-gray-900 text-sm sm:text-base">{selectedPlan.planName.replace('Cam ', '')}</span>
         </div>
-        <div className="text-right">
-          <span className="text-sm text-gray-500 line-through">${originalPrice.toFixed(2)}/mo</span>
-          <span className="text-sm font-semibold text-blue-600 ml-2">${selectedPlan.price.toFixed(2)}/mo</span>
+        <div className="text-left sm:text-right">
+          <span className="text-xs sm:text-sm text-gray-500 line-through">${originalPrice.toFixed(2)}/mo</span>
+          <span className="text-xs sm:text-sm font-semibold text-primary ml-1.5 sm:ml-2">${selectedPlan.price.toFixed(2)}/mo</span>
         </div>
       </div>
     </div>

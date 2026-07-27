@@ -19,25 +19,19 @@ function CheckoutLayout() {
   const selectedAccessoriesCount = accessories.reduce((sum, acc) => sum + acc.quantity, 0)
 
   return (
-    <div className="space-y-6 bg-[#EDF4FF] p-10 rounded-xl">
-      <h2 className="text-2xl font-semibold text-gray-900">Your security system</h2>
-      <p className="text-gray-600">
-        Review your personalized protection system designed to keep what matters most safe.
+    <div className="bg-[#EDF4FF] p-4 sm:p-6 rounded-xl">
+      <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Your security system</h2>
+      <p className="text-xs sm:text-sm text-gray-600 mb-4">
+        Review your personalized protection system.
       </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <CamerasSection />
-          {selectedSensorsCount > 0 && <SensorsSection />}
-          {selectedAccessoriesCount > 0 && <AccessoriesSection />}
-        </div>
+      <CamerasSection />
+      {selectedSensorsCount > 0 && <SensorsSection />}
+      {selectedAccessoriesCount > 0 && <AccessoriesSection />}
 
-        <div className="lg:col-span-1 space-y-4">
-          <PlanSection />
-          <ShippingSection />
-          <SummarySection />
-        </div>
-      </div>
+      <PlanSection />
+      <ShippingSection />
+      <SummarySection />
     </div>
   )
 }

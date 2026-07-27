@@ -19,8 +19,8 @@ function AccordionItem({
           isOpen && "bg-[#EDF4FF]"
         )}
       >
-        <div className="flex items-center justify-between px-4 py-3.5">
-          <span className="text-[11px] text-gray-500 uppercase tracking-wider font-normal">
+        <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3.5">
+          <span className="text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-wider font-normal">
             {step}
           </span>
           <svg
@@ -41,8 +41,8 @@ function AccordionItem({
           </svg>
         </div>
         <div className="h-px w-full bg-gray-200"></div>
-        <div className="px-4 py-3.5">
-          <h3 className="font-medium text-xl text-gray-900">{title}</h3>
+        <div className="px-3 sm:px-4 py-2.5 sm:py-3.5">
+          <h3 className="font-medium text-base sm:text-lg md:text-xl text-gray-900">{title}</h3>
         </div>
       </button>
       <div
@@ -51,7 +51,7 @@ function AccordionItem({
           isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className={cn("p-6", isOpen && "bg-[#EDF4FF]")}>
+        <div className={cn("p-3 sm:p-4 md:p-6", isOpen && "bg-[#EDF4FF]")}>
           {children}
         </div>
       </div>
@@ -93,10 +93,10 @@ function Accordion({ items, className, defaultOpenIndex = null }) {
         >
           {item.content}
           {openIndex === index && getNextStepLabel(index) && (
-            <div className="mt-6 w-fit mx-auto">
+            <div className="mt-4 sm:mt-6 w-full sm:w-fit mx-auto">
               <button
                 onClick={() => handleNextStep(index)}
-                className="border border-primary text-primary bg-transparent h-10 px-4 py-2 rounded-md text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="border border-primary text-primary bg-transparent h-9 sm:h-10 px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground w-full sm:w-auto"
               >
                 Next: {getNextStepLabel(index)}
               </button>

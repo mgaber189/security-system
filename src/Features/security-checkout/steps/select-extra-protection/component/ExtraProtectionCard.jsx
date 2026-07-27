@@ -10,7 +10,7 @@ function ExtraProtectionCard({
   const totalPrice = price * quantity
   return (
       <div
-        className={`relative bg-white rounded-lg border-2 p-4 w-64 transition-all ${
+        className={`relative bg-white rounded-lg border-2 p-3 sm:p-4 w-full transition-all ${
           isSelected ? "border-purple-600" : "border-gray-200"
         }`}
       >
@@ -41,36 +41,36 @@ function ExtraProtectionCard({
       </div>
 
       {/* Product Name */}
-      <h3 className="text-center text-lg font-semibold text-gray-900 mb-2">
+      <h3 className="text-center text-base sm:text-lg font-semibold text-gray-900 mb-1.5 sm:mb-2">
         {name}
       </h3>
 
       {/* Price */}
-      <p className="text-center text-xl font-bold text-gray-900 mb-3">
+      <p className="text-center text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
         ${price.toFixed(2)}
         {period && <span className="text-sm font-normal text-gray-500">/{period}</span>}
       </p>
 
       {/* Description */}
-      <p className="text-center text-xs text-gray-600 mb-4 px-2">
+      <p className="text-center text-xs text-gray-600 mb-3 sm:mb-4 px-1 sm:px-2">
         {description}
       </p>
 
       {/* Quantity and Total */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
         {/* Quantity Selector */}
-        <div className="flex items-center gap-2 border border-gray-300 rounded-md">
+        <div className="flex items-center gap-1.5 sm:gap-2 border border-gray-300 rounded-md">
           <button
             onClick={() => decrementAccessoryQuantity(accessory.id)}
             disabled={quantity === 0}
-            className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+            className="px-2 sm:px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
           >
             −
           </button>
-          <span className="px-2 text-sm font-medium min-w-[20px] text-center">{quantity}</span>
+          <span className="px-1.5 sm:px-2 text-sm font-medium min-w-[20px] text-center">{quantity}</span>
           <button
             onClick={() => incrementAccessoryQuantity(accessory.id)}
-            className="px-3 py-1 text-gray-600 hover:bg-gray-100 text-sm"
+            className="px-2 sm:px-3 py-1 text-gray-600 hover:bg-gray-100 text-sm"
           >
             +
           </button>
@@ -78,7 +78,7 @@ function ExtraProtectionCard({
 
         {/* Total Price */}
         <div className="flex items-center">
-          <span className={`text-lg font-semibold ${isSelected ? "text-purple-600" : "text-gray-900"}`}>
+          <span className={`text-base sm:text-lg font-semibold ${isSelected ? "text-purple-600" : "text-gray-900"}`}>
             ${totalPrice.toFixed(2)}
           </span>
         </div>

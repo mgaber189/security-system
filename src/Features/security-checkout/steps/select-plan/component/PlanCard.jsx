@@ -10,7 +10,7 @@ function PlanCard({
   return (
       <div
         onClick={() => setSelectedPlan(plan)}
-        className={`relative rounded-lg border-2 p-6 w-full cursor-pointer transition-all ${isSelected ? "border-purple-600 shadow-md" : "border-gray-200 hover:border-purple-300"}`}>
+        className={`relative rounded-lg border-2 p-4 sm:p-5 md:p-6 w-full cursor-pointer transition-all ${isSelected ? "border-purple-600 shadow-md" : "border-gray-200 hover:border-purple-300"}`}>
       {/* Discount Badge */}
       {discount && (
         <div className="absolute -top-3 left-4 bg-purple-600 text-white text-xs font-semibold px-2 py-1 rounded-md">
@@ -37,13 +37,13 @@ function PlanCard({
 
       {/* Plan Name */}
       <h3
-        className={`text-center text-lg font-semibold mb-2 ${isSelected ? "text-purple-600" : "text-gray-900"}`}>
+        className={`text-center text-base sm:text-lg font-semibold mb-2 ${isSelected ? "text-purple-600" : "text-gray-900"}`}>
         {planName}
       </h3>
 
       {/* Price */}
       <p
-        className={`text-center text-2xl font-bold mb-4 ${isSelected ? "text-purple-600" : "text-gray-900"}`}>
+        className={`text-center text-xl sm:text-2xl font-bold mb-4 ${isSelected ? "text-purple-600" : "text-gray-900"}`}>
         ${price.toFixed(2)}
         <span className="text-sm font-normal text-gray-500">/{period}</span>
       </p>

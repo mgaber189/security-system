@@ -40,7 +40,8 @@ function SummarySection() {
   })
 
   if (selectedPlan) {
-    const regularPrice = selectedPlan.price / (1 - selectedPlan.discount / 100)
+    const discount = selectedPlan.discount || 0
+    const regularPrice = discount > 0 ? selectedPlan.price / (1 - discount / 100) : selectedPlan.price
     originalTotal += regularPrice
     subtotal += selectedPlan.price
   }
@@ -59,23 +60,23 @@ function SummarySection() {
   }
 
   return (
-    <div className="space-y-4 pt-4">
+    <div className="space-y-3 sm:space-y-4 pt-4">
       <div className="flex items-center justify-between">
-        <div className="text-right">
-          <span className="text-sm text-gray-500 line-through">${originalTotal.toFixed(2)}</span>
-          <span className="text-3xl font-bold text-gray-900 ml-2">${subtotal.toFixed(2)}</span>
+        <div className="text-right w-full">
+          <span className="text-xs sm:text-sm text-gray-500 line-through">${originalTotal.toFixed(2)}</span>
+          <span className="text-2xl sm:text-3xl font-bold text-gray-900 ml-2">${subtotal.toFixed(2)}</span>
         </div>
       </div>
 
       <button 
         onClick={handleCheckout}
-        className="w-full bg-indigo-600 text-white font-semibold py-4 rounded-lg hover:bg-indigo-700 transition-colors"
+        className="w-full bg-indigo-600 text-white font-semibold py-3 sm:py-4 rounded-lg hover:bg-indigo-700 transition-colors text-sm sm:text-base"
       >
         Checkout
       </button>
 
       {savings > 0 && (
-        <p className="text-center text-sm text-gray-600">
+        <p className="text-center text-xs sm:text-sm text-gray-600">
           You're saving <span className="text-green-600 font-medium">${savings.toFixed(2)}</span> on your security bundle!
         </p>
       )}
@@ -83,19 +84,19 @@ function SummarySection() {
       <p className="text-center">
         <button 
           onClick={handleSaveForLater}
-          className="text-sm text-gray-500 hover:text-gray-700 underline bg-transparent border-none cursor-pointer"
+          className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 underline bg-transparent border-none cursor-pointer"
         >
           Save my system for later
         </button>
       </p>
       {saveMessage && (
-        <p className="text-center text-sm text-green-600 font-medium transition-opacity duration-300">
+        <p className="text-center text-xs sm:text-sm text-green-600 font-medium transition-opacity duration-300">
           {saveMessage}
         </p>
       )}
 
-      <div className="flex items-start gap-4 pt-4 mt-4 border-t border-gray-200">
-        <div className="relative w-16 h-16 flex-shrink-0">
+      <div className="flex items-start gap-3 sm:gap-4 pt-4 mt-4 border-t border-gray-200">
+        <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0">
           <svg viewBox="0 0 100 100" className="w-full h-full rotate-[-15deg]">
             <path
               id="circlePath"
@@ -103,18 +104,18 @@ function SummarySection() {
               fill="none"
             />
             <text>
-              <textPath href="#circlePath" className="text-[10px] font-medium text-gray-700">
+              <textPath href="#circlePath" className="text-[8px] sm:text-[10px] font-medium text-gray-700">
                 100% satisfaction guarantee
               </textPath>
             </text>
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-xs font-bold text-gray-700">100%</span>
+            <span className="text-[10px] sm:text-xs font-bold text-gray-700">100%</span>
           </div>
         </div>
-        <div>
-          <h4 className="font-medium text-gray-900">30-day hassle-free returns</h4>
-          <p className="text-sm text-gray-600 mt-1">
+        <div className="min-w-0">
+          <h4 className="font-medium text-gray-900 text-sm sm:text-base">30-day hassle-free returns</h4>
+          <p className="text-xs sm:text-sm text-gray-600 mt-1">
             If you're not totally in love with the product, we will refund you 100%.
           </p>
         </div>

@@ -206,7 +206,8 @@ const useBundleBuilderStore = create(
         // Plan
         if (get().selectedPlan) {
           const plan = get().selectedPlan
-          const regularPrice = plan.price / (1 - plan.discount / 100)
+          const discount = plan.discount || 0
+          const regularPrice = discount > 0 ? plan.price / (1 - discount / 100) : plan.price
           originalTotal += regularPrice
           subtotal += plan.price
         }
@@ -223,7 +224,8 @@ const useBundleBuilderStore = create(
       getPlanOriginalPrice: () => {
         if (!get().selectedPlan) return 0
         const plan = get().selectedPlan
-        return plan.price / (1 - plan.discount / 100)
+        const discount = plan.discount || 0
+        return discount > 0 ? plan.price / (1 - discount / 100) : plan.price
       },
 
       // Reset
