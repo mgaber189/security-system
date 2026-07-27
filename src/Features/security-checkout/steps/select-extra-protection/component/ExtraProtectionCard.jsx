@@ -1,24 +1,19 @@
 import React from 'react'
+import useBundleBuilderStore from '../../../store/useBundleBuilderStore'
 
 function ExtraProtectionCard({
-  name,
-  price,
-  period,
-  description,
-  icon,
-  isSelected = false,
-  onSelect,
-  quantity = 0,
-  onQuantityChange,
-  totalPrice
+  accessory
 }) {
+  const { incrementAccessoryQuantity, decrementAccessoryQuantity } = useBundleBuilderStore()
+  const { name, price, period, description, icon, quantity } = accessory
+  const isSelected = quantity > 0
+  const totalPrice = price * quantity
   return (
-    <div
-      onClick={onSelect}
-      className={`relative bg-white rounded-lg border-2 p-4 w-64 cursor-pointer transition-all ${
-        isSelected ? "border-purple-600" : "border-gray-200"
-      }`}
-    >
+      <div
+        className={`relative bg-white rounded-lg border-2 p-4 w-64 transition-all ${
+          isSelected ? "border-purple-600" : "border-gray-200"
+        }`}
+      >
       {/* Checkbox */}
       <div className="flex justify-start mb-2">
         <div
@@ -66,10 +61,7 @@ function ExtraProtectionCard({
         {/* Quantity Selector */}
         <div className="flex items-center gap-2 border border-gray-300 rounded-md">
           <button
-            onClick={(e) => {
-              e.stopPropagation()
-              onQuantityChange(Math.max(0, quantity - 1))
-            }}
+            onClick={() => decrementAccessoryQuantity(accessory.id)}
             disabled={quantity === 0}
             className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
           >
@@ -77,10 +69,7 @@ function ExtraProtectionCard({
           </button>
           <span className="px-2 text-sm font-medium min-w-[20px] text-center">{quantity}</span>
           <button
-            onClick={(e) => {
-              e.stopPropagation()
-              onQuantityChange(quantity + 1)
-            }}
+            onClick={() => incrementAccessoryQuantity(accessory.id)}
             className="px-3 py-1 text-gray-600 hover:bg-gray-100 text-sm"
           >
             +

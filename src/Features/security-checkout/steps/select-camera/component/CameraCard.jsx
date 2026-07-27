@@ -1,18 +1,14 @@
 import React from 'react'
+import useBundleBuilderStore from '../../../store/useBundleBuilderStore'
 
 function CameraCard({ 
-  discount, 
-  image, 
-  name, 
-  description, 
-  colors, 
-  selectedColor, 
-  onColorChange, 
-  quantity, 
-  onQuantityChange, 
-  price, 
-  originalPrice 
+  camera
 }) {
+  const { selectCameraColor, incrementCameraQuantity, decrementCameraQuantity } = useBundleBuilderStore()
+  const { discount, image, name, description, colors, selectedColor, price, originalPrice } = camera
+  
+  const selectedColorData = colors.find(c => c.id === selectedColor) || colors[0]
+  const quantity = selectedColorData?.quantity ?? 0
   return (
     <div className="bg-white rounded-lg border border-purple-200 p-4 w-64 hover:shadow-lg transition-shadow">
       {/* Discount Badge */}
@@ -43,7 +39,7 @@ function CameraCard({
         {colors.map((color) => (
           <button
             key={color.id}
-            onClick={() => onColorChange(color.id)}
+            onClick={() => selectCameraColor(camera.id, color.id)}
             className={`px-3 py-1 rounded-md border-2 text-xs font-medium transition-all ${
               selectedColor === color.id
                 ? 'border-green-500 bg-green-50'
@@ -64,7 +60,7 @@ function CameraCard({
         {/* Quantity Selector */}
         <div className="flex items-center gap-2 border border-gray-300 rounded-md">
           <button
-            onClick={() => onQuantityChange(quantity - 1)}
+            onClick={() => decrementCameraQuantity(camera.id, selectedColor)}
             disabled={quantity === 0}
             className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
           >
@@ -72,7 +68,7 @@ function CameraCard({
           </button>
           <span className="px-2 text-sm font-medium min-w-[20px] text-center">{quantity}</span>
           <button
-            onClick={() => onQuantityChange(quantity + 1)}
+            onClick={() => incrementCameraQuantity(camera.id, selectedColor)}
             className="px-3 py-1 text-gray-600 hover:bg-gray-100"
           >
             +

@@ -1,18 +1,16 @@
 import React from "react";
+import useBundleBuilderStore from '../../../store/useBundleBuilderStore'
 
 function PlanCard({
-  planName,
-  price,
-  period = "mo",
-  features,
-  isSelected = false,
-  onSelect,
-  discount,
+  plan
 }) {
+  const { selectedPlan, setSelectedPlan } = useBundleBuilderStore()
+  const { id, planName, price, period, features, discount } = plan
+  const isSelected = selectedPlan?.id === id
   return (
-    <div
-      onClick={onSelect}
-      className={`relative rounded-lg border-2 p-6 w-full cursor-pointer transition-all ${isSelected ? "border-purple-600 shadow-md" : "border-gray-200 hover:border-purple-300"}`}>
+      <div
+        onClick={() => setSelectedPlan(plan)}
+        className={`relative rounded-lg border-2 p-6 w-full cursor-pointer transition-all ${isSelected ? "border-purple-600 shadow-md" : "border-gray-200 hover:border-purple-300"}`}>
       {/* Discount Badge */}
       {discount && (
         <div className="absolute -top-3 left-4 bg-purple-600 text-white text-xs font-semibold px-2 py-1 rounded-md">

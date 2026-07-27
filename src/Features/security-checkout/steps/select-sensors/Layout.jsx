@@ -1,25 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SensorsCard from './component/SensorsCard'
-import sensorsData from '../../data/sensors.js'
+import useBundleBuilderStore from '../../store/useBundleBuilderStore'
 
 function SelectSensorsLayout() {
-  const [sensors, setSensors] = useState(sensorsData)
-
-  const handleQuantityChange = (sensorId, newQuantity) => {
-    setSensors(prev => prev.map(sensor => 
-      sensor.id === sensorId 
-        ? { ...sensor, quantity: Math.max(0, newQuantity) }
-        : sensor
-    ))
-  }
-
-  const handleCheckChange = (sensorId, isChecked) => {
-    setSensors(prev => prev.map(sensor => 
-      sensor.id === sensorId 
-        ? { ...sensor, isSelected: isChecked }
-        : sensor
-    ))
-  }
+  const sensors = useBundleBuilderStore(state => state.sensors)
 
   return (
     <div className="w-full">
@@ -27,14 +11,7 @@ function SelectSensorsLayout() {
         {sensors.map((sensor) => (
           <SensorsCard
             key={sensor.id}
-            image={sensor.image}
-            name={sensor.name}
-            price={sensor.price}
-            quantity={sensor.quantity}
-            onQuantityChange={(newQuantity) => handleQuantityChange(sensor.id, newQuantity)}
-            total={sensor.price * sensor.quantity}
-            isSelected={sensor.isSelected || false}
-            onCheckChange={(checked) => handleCheckChange(sensor.id, checked)}
+            sensor={sensor}
           />
         ))}
       </div>

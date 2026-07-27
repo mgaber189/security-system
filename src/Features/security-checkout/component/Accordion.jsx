@@ -7,7 +7,7 @@ function AccordionItem({
   isOpen, 
   onClick, 
   children, 
-  className 
+  className
 }) {
   return (
     <div className={cn("border border-gray-200 rounded-lg", className)}>
@@ -31,7 +31,7 @@ function AccordionItem({
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
-            >
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -59,7 +59,7 @@ function AccordionItem({
   );
 }
 
-function Accordion({ items, className, defaultOpenIndex = null, onNextStep }) {
+function Accordion({ items, className, defaultOpenIndex = null }) {
   const [openIndex, setOpenIndex] = useState(defaultOpenIndex);
 
   const handleToggle = (index) => {
@@ -70,9 +70,6 @@ function Accordion({ items, className, defaultOpenIndex = null, onNextStep }) {
     const nextIndex = index + 1;
     if (nextIndex < items.length) {
       setOpenIndex(nextIndex);
-      if (onNextStep) {
-        onNextStep(nextIndex);
-      }
     }
   };
 
@@ -81,7 +78,7 @@ function Accordion({ items, className, defaultOpenIndex = null, onNextStep }) {
     if (nextIndex < items.length && items[nextIndex]) {
       return items[nextIndex].title;
     }
-    return "Next Step";
+    return null;
   };
 
   return (
@@ -95,13 +92,13 @@ function Accordion({ items, className, defaultOpenIndex = null, onNextStep }) {
           onClick={() => handleToggle(index)}
         >
           {item.content}
-          {openIndex === index && index < items.length - 1 && (
-            <div className="mt-6 w-fit m-auto">
+          {openIndex === index && getNextStepLabel(index) && (
+            <div className="mt-6 w-fit mx-auto">
               <button
                 onClick={() => handleNextStep(index)}
-                className="w-full border border-primary text-primary bg-transparent h-10 px-4 py-2 rounded-md text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="border border-primary text-primary bg-transparent h-10 px-4 py-2 rounded-md text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
               >
-                {getNextStepLabel(index)}
+                Next: {getNextStepLabel(index)}
               </button>
             </div>
           )}
